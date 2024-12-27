@@ -19,3 +19,9 @@ def BasicMerge(sourceDataFrame, targetTableFqn, businessKey=None):
     .whenMatchedUpdateAll() \
     .whenNotMatchedInsertAll() \
     .execute()  
+    
+def CreateOrMerge(sourceDataFrame, targetTableFqn, dataLakePath, businessKey=None):
+  if (TableExists(targetTableFqn)):
+    BasicMerge(sourceDataFrame, targetTableFqn, businessKey)
+  else:
+    CreateDeltaTable(sourceDataFrame, targetTableFqn, dataLakePath)      
