@@ -1,4 +1,6 @@
 from delta.tables import *
+from databricks.sdk.runtime import *
+
 
 def CreateDeltaTableTst(dataFrame, targetTableFqn, dataLakePath):
   dataFrame.write \
