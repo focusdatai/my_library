@@ -17,7 +17,7 @@ def CreateDeltaTable(dataFrame, targetTableFqn, dataLakePath):
     .save(dataLakePath)
   spark.sql(f"CREATE TABLE IF NOT EXISTS {targetTableFqn} USING DELTA LOCATION \'{dataLakePath}\'")
 
-  def BasicMerge(sourceDataFrame, targetTableFqn, businessKey=None):
+def BasicMerge(sourceDataFrame, targetTableFqn, businessKey=None):
   businessKey = spark.table(targetTableFqn).columns[0] if businessKey is None else businessKey
   s = ConcatBusinessKey(businessKey, "s")
   t = ConcatBusinessKey(businessKey, "t")
