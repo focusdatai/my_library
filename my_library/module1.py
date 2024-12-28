@@ -2,7 +2,7 @@ from delta.tables import *
 from databricks.sdk.runtime import *
 
 
-def CreateDeltaTableTst(dataFrame, targetTableFqn, dataLakePath):
+def CreateDeltaTable(dataFrame, targetTableFqn, dataLakePath):
   dataFrame.write \
     .format("delta") \
     .option("mergeSchema", "true") \
